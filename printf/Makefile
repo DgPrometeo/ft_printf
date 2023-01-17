@@ -6,7 +6,7 @@
 #    By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 19:45:27 by danielga          #+#    #+#              #
-#    Updated: 2023/01/17 11:54:59 by danielga         ###   ########.fr        #
+#    Updated: 2023/01/17 13:35:57 by danielga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 # All the files of the functions it will host.
-SOURCE = ft_printf.c
+SOURCE = ft_printf.c ft_printchar.c ft_formatsprint.c
 	 
 # To make the library, convert functions (*.c) to objects (*.o) with the -c flag.
 OBJS = $(SOURCE:.c=.o)
