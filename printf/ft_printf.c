@@ -6,9 +6,11 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:50:01 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/16 19:42:02 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:29:43 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_printchar(int c)
 {
@@ -16,33 +18,40 @@ int	ft_printchar(int c)
 	return (1);
 }
 
-int	ft_variable(char const *str, int len)
+int	ft_variable(va_list args, char const str)
 {
-	if (str[i + 1] == 'c')
-	//imprime un solo carácter)
-	else if (str[i + 1] == 's')
+	int	len;
+
+	len = 0;
+	if (str == 'c')
+	{
+		len++;
+		ft_printchar(va_arg(args, int));
+	}
+	else if (str == 's')
 	//imprime el string
-	else if (str[i + 1] == 'p')
+	else if (str == 'p')
 	//el puntero void * dado como argumento se imprimer hexadecimalmente.
-	else if (str[i + 1] == 'd')
+	else if (str == 'd')
 	//imprime un número decimal (base 10)
-	else if (str[i + 1] == 'i')
+	else if (str == 'i')
 	//imprime un numero entero en base 10.
-	else if (str[i + 1] == 'u')
+	else if (str == 'u')
 	//imprime un numero decimal sin signo.
-	else if (str[i + 1] == 'x')
+	else if (str == 'x')
 	//imprime un número hexadecimal (base 16) en minusculas
-	else if (str[i + 1] == 'X')
+	else if (str == 'X')
 		//imprime un número hexadecimal (base 16) en minusculas
-	else if (str[i + 1] == '%')
+	else if (str == '%')
 	//imprime el simbolo del porcenjate.
+	return (len);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	int	i;
+	int		i;
 	va_list	args;
-	int	len;
+	int		len;
 
 	len = 0;
 	i = 0;
@@ -51,13 +60,13 @@ int	ft_printf(char const *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			ft_variable(str, i);
+			ft_variable(args, str[i + 1]);
 			len++;
 			i++;
 		}
 		else
 		{
-			ft_printchar(str);
+			ft_printchar(str[i]);
 			len++;
 			i++;
 		}
