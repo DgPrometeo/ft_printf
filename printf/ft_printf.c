@@ -6,7 +6,7 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:50:01 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/17 12:29:43 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:06:50 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ int	ft_variable(va_list args, char const str)
 
 	len = 0;
 	if (str == 'c')
-	{
-		len++;
-		ft_printchar(va_arg(args, int));
-	}
+		len += ft_printchar(va_arg(args, int));
 	else if (str == 's')
-	//imprime el string
+		len += ft_strchar(va_arg(args, const char));
 	else if (str == 'p')
-	//el puntero void * dado como argumento se imprimer hexadecimalmente.
+	//el puntero void * dado como argumento se imprime hexadecimalmente.
 	else if (str == 'd')
 	//imprime un número decimal (base 10)
 	else if (str == 'i')
@@ -41,9 +38,9 @@ int	ft_variable(va_list args, char const str)
 	else if (str == 'x')
 	//imprime un número hexadecimal (base 16) en minusculas
 	else if (str == 'X')
-		//imprime un número hexadecimal (base 16) en minusculas
+		//imprime un número hexadecimal (base 16) en mayusculas
 	else if (str == '%')
-	//imprime el simbolo del porcenjate.
+		len += ft_printchar('%');
 	return (len);
 }
 
