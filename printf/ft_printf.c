@@ -6,19 +6,13 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:50:01 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/17 13:06:50 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:39:36 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_variable(va_list args, char const str)
+static int	ft_variable(va_list args, char const str)
 {
 	int	len;
 
@@ -26,8 +20,8 @@ int	ft_variable(va_list args, char const str)
 	if (str == 'c')
 		len += ft_printchar(va_arg(args, int));
 	else if (str == 's')
-		len += ft_strchar(va_arg(args, const char));
-	else if (str == 'p')
+		len += ft_strchar(va_arg(args, char*));
+/*	else if (str == 'p')
 	//el puntero void * dado como argumento se imprime hexadecimalmente.
 	else if (str == 'd')
 	//imprime un número decimal (base 10)
@@ -38,7 +32,7 @@ int	ft_variable(va_list args, char const str)
 	else if (str == 'x')
 	//imprime un número hexadecimal (base 16) en minusculas
 	else if (str == 'X')
-		//imprime un número hexadecimal (base 16) en mayusculas
+		//imprime un número hexadecimal (base 16) en mayusculas*/
 	else if (str == '%')
 		len += ft_printchar('%');
 	return (len);
@@ -57,16 +51,16 @@ int	ft_printf(char const *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			ft_variable(args, str[i + 1]);
-			len++;
 			i++;
+			ft_variable(args, str[i]);
+			len++;
 		}
 		else
 		{
 			ft_printchar(str[i]);
 			len++;
-			i++;
 		}
+		i++;
 	}
 	va_end (args);
 	return (len);
