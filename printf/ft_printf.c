@@ -6,7 +6,7 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:50:01 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/17 15:32:01 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:25:51 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static int	ft_variable(va_list args, char const str)
 	if (str == 'c')
 		len += ft_printchar(va_arg(args, int));
 	else if (str == 's')
-		len += ft_strprint(va_arg(args, char*));
+		len += ft_printstr(va_arg(args, char*));
 /*	else if (str == 'p')
-	//el puntero void * dado como argumento se imprime hexadecimalmente.
+	//el puntero void * dado como argumento se imprime hexadecimalmente.*/
 	else if (str == 'd')
-	//imprime un número decimal (base 10)
+		len += ft_printnbr(va_arg(args, int));
 	else if (str == 'i')
-	//imprime un numero entero en base 10.
-	else if (str == 'u')
+		len += ft_printnbr(va_arg(args, int));
+/*	else if (str == 'u')
 	//imprime un numero decimal sin signo.
 	else if (str == 'x')
 	//imprime un número hexadecimal (base 16) en minusculas
 	else if (str == 'X')
-		//imprime un número hexadecimal (base 16) en mayusculas*/
+		//imprime un número hexadecimal (base 16) en mayusculas */
 	else if (str == '%')
 		len += ft_printchar('%');
 	return (len);
@@ -52,13 +52,11 @@ int	ft_printf(char const *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			ft_variable(args, str[i]);
-			len++;
+			len += ft_variable(args, str[i]);
 		}
 		else
 		{
-			ft_printchar(str[i]);
-			len++;
+			len += ft_printchar(str[i]);
 		}
 		i++;
 	}
