@@ -6,7 +6,7 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:31:46 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/18 15:32:43 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:19:48 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_printstr(char *str)
 
 	i = 0;
 	if (!str)
-		return (-1);
-	while (str[i])
+		return (ft_printstr("(null)"));
+	while (str[i] != '\0')
 	{
 		ft_printchar(str[i]);
 		i++;
