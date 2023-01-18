@@ -6,7 +6,7 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:52:14 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/18 15:39:51 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:14:49 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int	ft_printnbr(int n)
 	len = 0;
 	if (n == -2147483648)
 	{
-		ft_printchar('-');
-		ft_printchar('2');
-		len = len + 2;
-		ft_printnbr(147483648);
+		ft_printstr("-2147483648");
+		return (11);
 	}
 	else if (n < 0)
 	{
@@ -31,8 +29,8 @@ int	ft_printnbr(int n)
 	}
 	else if (n > 9)
 	{
-		len += ft_printchar(n / 10);
-		ft_printchar(n % 10);
+		len += ft_printnbr(n / 10);
+		len += ft_printnbr(n % 10);
 	}
 	else
 		len += ft_printchar(n + 48);
