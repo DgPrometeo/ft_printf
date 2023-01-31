@@ -6,7 +6,7 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 12:50:01 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/31 17:29:36 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:46:30 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	ft_variable(va_list args, char const str)
 {
-	int	len;
+	int		len;
+	char	*hex;
 
 	len = 0;
+	hex = "0123456789abcdef";
 	if (str == 'c')
 		len += ft_printchar(va_arg(args, int));
 	else if (str == 's')
@@ -24,8 +26,7 @@ static int	ft_variable(va_list args, char const str)
 	else if (str == 'p')
 	{
 		len += ft_printstr("0x");
-		len += ft_printhex(va_arg(args, unsigned long long),
-				"0123456789abcdef");
+		len += ft_printhex(va_arg(args, unsigned long long), hex);
 	}
 	else if (str == 'd' || str == 'i')
 		len += ft_printnbr(va_arg(args, int));
@@ -33,7 +34,7 @@ static int	ft_variable(va_list args, char const str)
 		len += ft_print_unsig_nbr(va_arg(args, unsigned int));
 	else if (str == 'x')
 		len += ft_printhex((unsigned long long)
-				va_arg(args, unsigned long), "0123456789abcdef");
+				va_arg(args, unsigned long), hex);
 	else if (str == 'X')
 		len += ft_printhex((unsigned long long)
 				va_arg(args, unsigned long), "0123456789ABCDEF");

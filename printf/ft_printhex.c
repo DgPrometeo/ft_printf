@@ -6,32 +6,58 @@
 /*   By: danielga <danielga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:35:14 by danielga          #+#    #+#             */
-/*   Updated: 2023/01/20 18:57:20 by danielga         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:32:48 by danielga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printhex(unsigned int p)
+int	ft_printhex(unsigned long long p, char *hex)
 {
-	int		len;
-	char	*hex;
-	long	nmb;
+	int					len;
+	unsigned long long	nmb;
 
-	hex = "0123456789abcdef";
 	len = 0;
-	nmb = (long)p;
+	nmb = p;
+	if (p == 0)
+		return (ft_printchar('0'));
 	while (nmb > 0)
 	{
+		nmb = nmb / 16;
 		ft_printchar(hex[p % 16]);
 		len++;
-		nmb = nmb / 16;
+		p = p / 16;
 	}
 	return (len);
 }
+//Imprime al revés la función cuando no debería hacerlo.
+
+/*{
+	int					len;
+	unsigned long long	nmb;
+
+	len = 0;
+	nmb = p;
+	if (p == 0)
+		return (ft_printchar('0'));
+	if (nmb > 16)
+	{
+		len++;
+		ft_printhex(nmb / 16, hex);
+		ft_printhex(nmb % 16, hex);
+	}
+	else
+	{
+		ft_printchar(hex[p % 16]);
+		len++;
+	}
+	return (len);
+}*/
+//imprime la función casí correctamente pero creo que no toma bien el len.
 
 /*
-La base hexadecimal es "0123456789abcdef", que son los 16 elementos que puede contener. 
+La base hexadecimal es "0123456789abcdef", que son los 16 elementos que 
+puede contener. 
 
 me recomiendan basarme en ft_itoa para %p.
 */
